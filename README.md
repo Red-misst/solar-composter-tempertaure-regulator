@@ -18,18 +18,18 @@ The system maintains compost temperature within the optimal thermophilic range (
 
 ```mermaid
 graph TD
-    A[12V Solar Battery System] --> B[Buck Converter (12V to 5V)]
-    B --> C[Arduino Uno R3]
-    C --> DHT22[DHT22 Temperature/Humidity Sensor]
-    C --> Relay[Relay Module]
-    Relay --> Heater[Nichrome Wire Heating Element]
-    C --> Status[Status Monitoring]
+    A["12V Solar Battery System"] --> B["Buck Converter 12V to 5V"]
+    B --> C["Arduino Uno R3"]
+    C --> DHT22["DHT22 Temperature/Humidity Sensor"]
+    C --> Relay["Relay Module"]
+    Relay --> Heater["Nichrome Wire Heating Element"]
+    C --> Status["Status Monitoring"]
     
     subgraph "Control Loop"
-        Sense[Temperature Sensing] --> Compare[Temperature Comparison]
-        Compare --> Decision{T < 55°C?}
-        Decision -->|Yes| HeatOn[Activate Heater]
-        Decision -->|No| HeatOff[Deactivate Heater]
+        Sense["Temperature Sensing"] --> Compare["Temperature Comparison"]
+        Compare --> Decision{"Temperature < 55°C?"}
+        Decision -->|Yes| HeatOn["Activate Heater"]
+        Decision -->|No| HeatOff["Deactivate Heater"]
         HeatOn --> Sense
         HeatOff --> Sense
     end
