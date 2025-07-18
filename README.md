@@ -78,26 +78,41 @@ graph TD
 ```mermaid
 flowchart TD
     START([System Initialization])
-    INIT[Initialize Serial Communication<br/>Configure DHT22 Sensor<br/>Set Relay Pin as Output<br/>Initial State: Heater OFF]
+    INIT["Initialize Serial Communication
+    Configure DHT22 Sensor
+    Set Relay Pin as Output
+    Initial State: Heater OFF"]
     
     LOOP_START[Main Control Loop]
-    READ_SENSOR[Read Temperature & Humidity<br/>from DHT22 Sensor]
+    READ_SENSOR["Read Temperature & Humidity
+    from DHT22 Sensor"]
     
-    VALIDATE{Sensor Reading<br/>Valid?}
-    ERROR[Log Error Message<br/>Return to Loop]
+    VALIDATE{"Sensor Reading
+    Valid?"}
+    ERROR["Log Error Message
+    Return to Loop"]
     
-    LOG[Serial Output:<br/>Temperature & Humidity Data]
+    LOG["Serial Output:
+    Temperature & Humidity Data"]
     
-    TEMP_CHECK{Temperature<br/>< 55°C?}
-    TEMP_HIGH{Temperature<br/>> 70°C?}
+    TEMP_CHECK{"Temperature
+    < 55°C?"}
+    TEMP_HIGH{"Temperature
+    > 70°C?"}
     
-    HEATER_ON[Activate Relay<br/>digitalWrite(RELAY_PIN, HIGH)<br/>Nichrome Heater: ON]
+    HEATER_ON["Activate Relay
+    digitalWrite RELAY_PIN HIGH
+    Nichrome Heater: ON"]
     
-    HEATER_OFF[Deactivate Relay<br/>digitalWrite(RELAY_PIN, LOW)<br/>Nichrome Heater: OFF]
+    HEATER_OFF["Deactivate Relay
+    digitalWrite RELAY_PIN LOW
+    Nichrome Heater: OFF"]
     
-    MAINTAIN[Maintain Current State<br/>55°C ≤ T ≤ 70°C]
+    MAINTAIN["Maintain Current State
+    55°C ≤ T ≤ 70°C"]
     
-    DELAY[Wait 3 seconds<br/>delay(3000)]
+    DELAY["Wait 3 seconds
+    delay 3000"]
     
     START --> INIT --> LOOP_START --> READ_SENSOR --> VALIDATE
     VALIDATE -->|No| ERROR --> DELAY --> LOOP_START
